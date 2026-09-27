@@ -38,7 +38,7 @@ public class CucumberHooks {
         setupChromeOptions();
 
         System.out.println("========================================");
-        System.out.println("🚀 Selenide Configuration:");
+        System.out.println("Selenide Configuration:");
         System.out.println("  Browser:    " + Configuration.browser);
         System.out.println("  Headless:   " + Configuration.headless);
         System.out.println("  Size:       " + Configuration.browserSize);

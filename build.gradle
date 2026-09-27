@@ -43,26 +43,6 @@ dependencies {
 
     // Для @Step в ai assisted решении
     implementation 'io.qameta.allure:allure-junit5:2.25.0'
-
-
-//    // Selenide
-//    implementation 'com.codeborne:selenide:7.2.3'
-//
-//    // JUnit 5
-//    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
-//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-//    testImplementation 'org.junit.platform:junit-platform-suite:1.10.0'
-//
-//    // Для работы с аннотациями
-//    testImplementation 'org.junit.platform:junit-platform-launcher:1.10.0'
-//
-//    // Cucumber
-//    testImplementation 'io.cucumber:cucumber-java:7.15.0'
-//    testImplementation 'io.cucumber:cucumber-junit:7.15.0'
-//    testImplementation 'io.cucumber:cucumber-junit-platform-engine:7.15.0'
-//
-//    // Allure
-//    testImplementation 'io.qameta.allure:allure-cucumber7-jvm:2.25.0'
 }
 
 test {

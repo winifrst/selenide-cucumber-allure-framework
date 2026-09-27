@@ -3,7 +3,6 @@ package org.example.task_3_manual_solution;
 import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
-//import io.qameta.allure.Step;
 import org.example.task_1_manual_solution.*;
 
 public class CommonSteps {

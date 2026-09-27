@@ -33,7 +33,6 @@ public abstract class BaseTest {
         // НАСТРАИВАЕМ конкретный браузер с его опциями
         setupBrowserOptions(browser);
 
-        // ЛОГИРУЕМ финальную конфигурацию
         System.out.println("========================================");
         System.out.println("🚀 Selenide Configuration:");
         System.out.println("  Browser:    " + Configuration.browser);
@@ -55,7 +54,7 @@ public abstract class BaseTest {
                 setupEdge();
                 break;
             default:
-                System.out.println("⚠️ Browser '" + browser + "' будет использовать настройки по умолчанию");
+                System.out.println("Browser '" + browser + "' будет использовать настройки по умолчанию");
         }
     }
 
