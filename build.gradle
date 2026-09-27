@@ -1,0 +1,94 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    // Selenide (актуальная)
+    implementation 'com.codeborne:selenide:7.4.0'
+
+    // JUnit 5
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.3'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testImplementation 'org.junit.platform:junit-platform-suite:1.10.3'
+    testImplementation 'org.junit.platform:junit-platform-launcher:1.10.3'
+
+    // Cucumber - обновленные версии для Java 21
+    testImplementation 'io.cucumber:cucumber-java:7.18.1'
+    testImplementation 'io.cucumber:cucumber-junit:7.18.1'
+    testImplementation 'io.cucumber:cucumber-junit-platform-engine:7.18.1'
+
+    // Allure
+    testImplementation 'io.qameta.allure:allure-cucumber7-jvm:2.27.0'
+
+    // Для совместимости с Java 21
+    testImplementation 'org.ow2.asm:asm:9.7'
+    testImplementation 'org.ow2.asm:asm-commons:9.7'
+    testImplementation 'org.ow2.asm:asm-tree:9.7'
+
+    testImplementation 'org.slf4j:slf4j-simple:2.0.9'
+
+    // Для @Step в ai assisted решении
+    implementation 'io.qameta.allure:allure-junit5:2.25.0'
+
+
+//    // Selenide
+//    implementation 'com.codeborne:selenide:7.2.3'
+//
+//    // JUnit 5
+//    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+//    testImplementation 'org.junit.platform:junit-platform-suite:1.10.0'
+//
+//    // Для работы с аннотациями
+//    testImplementation 'org.junit.platform:junit-platform-launcher:1.10.0'
+//
+//    // Cucumber
+//    testImplementation 'io.cucumber:cucumber-java:7.15.0'
+//    testImplementation 'io.cucumber:cucumber-junit:7.15.0'
+//    testImplementation 'io.cucumber:cucumber-junit-platform-engine:7.15.0'
+//
+//    // Allure
+//    testImplementation 'io.qameta.allure:allure-cucumber7-jvm:2.25.0'
+}
+
+test {
+    useJUnitPlatform()
+
+    jvmArgs += "-Dbrowser=${browser}"
+    jvmArgs += "-Dheadless=${headless}"
+    jvmArgs += "-DbrowserSize=${browserSize}"
+//    jvmArgs += "-Dtimeout=${timeout}"
+    jvmArgs += "-DbaseUrl=${baseUrl}"
+
+    // Настройка логирования
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+    }
+}
+
+// Настройка для запуска тестов
+tasks.withType(Test) {
+    systemProperty "file.encoding", "UTF-8"
+}
+
+allure {
+    version = '2.25.0'
+    useCucumberJVM {
+        version = '2.25.0'
+    }
+}
