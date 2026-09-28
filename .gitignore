@@ -45,3 +45,35 @@ bin/
 script.sh
 */all_java_files.txt
 all_java_files.txt
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# GigaIDE (плагин для IDE)
+.gigaide/
+gigaide.properties
+
+# Allure
+allure-results/
+allure-report/
+build/allure-results/
+build/allure-report/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
