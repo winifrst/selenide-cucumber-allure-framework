@@ -1,5 +1,7 @@
-package org.example.task_1_manual_solution;
+package org.example.tests;
 
+import org.example.pages.LoginPageNoCucumber;
+import org.example.pages.ProductsPageNoCucumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

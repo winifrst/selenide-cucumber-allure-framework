@@ -1,4 +1,4 @@
-package org.example.task_1_ai_assisted;
+package org.example.tests;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.AfterAll;
@@ -13,31 +13,33 @@ import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.*;
 
-/**
- * Базовый класс для всех тестов
- * Содержит настройки Selenide и методы очистки состояния
- */
 public abstract class BaseTest {
 
     @BeforeAll
     static void setUpAll() {
+
         // Читаем параметры из gradle.properties
         String browser = System.getProperty("browser", "chrome");
         String headless = System.getProperty("headless", "false");
-        String browserSize = System.getProperty("browserSize", "1600x900");
+        String browserSize = System.getProperty("browserSize", "1920x1080");
+        String timeoutStr = System.getProperty("timeout", "10000");
         String baseUrl = System.getProperty("baseUrl", "https://www.saucedemo.com");
 
-        // Применяем параметры к базовой конфигурации
         Configuration.browser = browser;
         Configuration.headless = Boolean.parseBoolean(headless);
         Configuration.browserSize = browserSize;
         Configuration.baseUrl = baseUrl;
 
-        // Настраиваем конкретный браузер с его опциями
+        // НАСТРАИВАЕМ конкретный браузер с его опциями
         setupBrowserOptions(browser);
 
-        // Логируем финальную конфигурацию
-        logConfiguration();
+        System.out.println("========================================");
+        System.out.println("🚀 Selenide Configuration:");
+        System.out.println("  Browser:    " + Configuration.browser);
+        System.out.println("  Headless:   " + Configuration.headless);
+        System.out.println("  Size:       " + Configuration.browserSize);
+        System.out.println("  Base URL:   " + Configuration.baseUrl);
+        System.out.println("========================================");
     }
 
     private static void setupBrowserOptions(String browser) {
@@ -52,14 +54,14 @@ public abstract class BaseTest {
                 setupEdge();
                 break;
             default:
-                System.out.println("⚠️ Browser '" + browser + "' будет использовать настройки по умолчанию");
+                System.out.println("Browser '" + browser + "' будет использовать настройки по умолчанию");
         }
     }
 
     private static void setupChrome() {
         ChromeOptions options = new ChromeOptions();
 
-        // Отключаем сохранение паролей и уведомления
+        // Аргументы командной строки - отключаем сохранение паролей и уведомления
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-save-password-bubble");
         options.addArguments("--disable-features=PasswordImport");
@@ -87,6 +89,7 @@ public abstract class BaseTest {
             options.addArguments("--disable-dev-shm-usage");
         }
 
+        // Применяем настройки к Selenide
         Configuration.browserCapabilities = options;
     }
 
@@ -101,6 +104,7 @@ public abstract class BaseTest {
         options.addPreference("signon.autofillForms", false);
         options.addPreference("signon.storeWhenAutocompleteOff", false);
 
+        // Если headless режим
         if (Configuration.headless) {
             options.addArguments("--headless");
             options.addArguments("--window-size=" + Configuration.browserSize);
@@ -112,30 +116,25 @@ public abstract class BaseTest {
     private static void setupEdge() {
         EdgeOptions options = new EdgeOptions();
 
+        // Отключаем уведомления
         options.addArguments("--disable-notifications");
+
+        // Отключаем сохранение паролей
         options.addArguments("--disable-save-password-bubble");
 
+        // Настройки профиля
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("credentials_enable_service", false);
         prefs.put("profile.password_manager_enabled", false);
         options.setExperimentalOption("prefs", prefs);
 
+        // Если headless режим
         if (Configuration.headless) {
             options.addArguments("--headless=new");
             options.addArguments("--window-size=" + Configuration.browserSize);
         }
 
         Configuration.browserCapabilities = options;
-    }
-
-    private static void logConfiguration() {
-        System.out.println("========================================");
-        System.out.println("🚀 Selenide Configuration:");
-        System.out.println("  Browser:    " + Configuration.browser);
-        System.out.println("  Headless:   " + Configuration.headless);
-        System.out.println("  Size:       " + Configuration.browserSize);
-        System.out.println("  Base URL:   " + Configuration.baseUrl);
-        System.out.println("========================================");
     }
 
     @AfterAll

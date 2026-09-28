@@ -1,9 +1,12 @@
-package org.example.task_3_manual_solution;
+package org.example.cucumber;
 
 import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
-import org.example.task_1_manual_solution.*;
+import org.example.pages.CartPageNoCucumber;
+import org.example.pages.CheckoutPageNoCucumber;
+import org.example.pages.LoginPageNoCucumber;
+import org.example.pages.ProductsPageNoCucumber;
 
 public class CommonSteps {
 

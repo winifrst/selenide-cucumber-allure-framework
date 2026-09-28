@@ -1,4 +1,4 @@
-package org.example.task_1_manual_solution;
+package org.example.pages;
 
 import com.codeborne.selenide.SelenideElement;
 

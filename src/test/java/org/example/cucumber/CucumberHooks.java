@@ -1,4 +1,4 @@
-package org.example.task_3_manual_solution;
+package org.example.cucumber;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;

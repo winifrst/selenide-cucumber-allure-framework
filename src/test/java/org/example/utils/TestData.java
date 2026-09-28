@@ -1,4 +1,4 @@
-package org.example.task_1_ai_assisted.utils;
+package org.example.utils;
 
 /**
  * Класс для хранения тестовых данных
